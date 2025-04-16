@@ -1,14 +1,12 @@
 <?php
-session_start();  // Start the session to track bookmarks
+session_start();
 
-// Include the books array
 include('books.php');
 
-// Remove book from bookmarks if "remove" button is clicked
+// Remove book from bookmarks
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_book_id'])) {
     $book_id_to_remove = $_POST['remove_book_id'];
 
-    // Remove book from session bookmarks
     if (($key = array_search($book_id_to_remove, $_SESSION['bookmarks'] ?? [])) !== false) {
         unset($_SESSION['bookmarks'][$key]);
     }
@@ -33,13 +31,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_book_id'])) {
             <?php if (!empty($_SESSION['bookmarks'])): ?>
                 <?php foreach ($_SESSION['bookmarks'] as $book_id): ?>
                     <?php if (isset($books[$book_id])): ?>
+
+                        <!-- katong card nga na bookmark na sya -->
                         <div class="bg-white p-4 rounded shadow">
                             <img src="<?= $books[$book_id]['image']; ?>" alt="<?= $books[$book_id]['title']; ?>" class="w-40 h-61 object-cover rounded">
                             <h3 class="font-bold text-lg"><?= $books[$book_id]['title']; ?></h3>
                             <p class="text-sm text-gray-600"><?= $books[$book_id]['author']; ?></p>
-                            <p class="mt-2 text-sm"><?= $books[$book_id]['description']; ?></p>
 
-                            <!-- Remove from bookmarks using bookmark icon -->
+                            <!-- Removes from bookmark-->
                             <form action="bookmarks.php" method="POST">
                                 <input type="hidden" name="remove_book_id" value="<?= $book_id; ?>" />
                                 <button type="submit" class="text-red-500 flex items-center space-x-2">
