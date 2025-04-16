@@ -18,6 +18,7 @@
     <section class="py-6 px-4">
     <h2 class="text-2xl font-bold mb-4">Trending books</h2>
 
+    <!-- dani ma change ang column sa container atong books -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2">
     <?php foreach ($books as $book_id => $book): ?>
         <a href="book-details.php?book_id=<?= $book_id ?>">
