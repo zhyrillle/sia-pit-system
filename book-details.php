@@ -1,56 +1,47 @@
 <?php
 session_start();
 
-// Include the books array
 include('books.php');
 
-// Get the book ID from the URL
 $book_id = isset($_GET['book_id']) ? $_GET['book_id'] : null;
 
-// Check if the book exists in the array
+// pampa check if ga exist ang book id
 if ($book_id && isset($books[$book_id])) {
-    $book = $books[$book_id];  // Set the book based on the ID
+    $book = $books[$book_id];
 } else {
-    $book = null;  // If no book found
+    $book = null; 
 }
 
-// Add to cart logic
+// Add to cart function
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'add_to_cart') {
     $book_id = $_POST['book_id'];
 
-    // Ensure the cart session is initialized if not already
     if (!isset($_SESSION['cart'])) {
         $_SESSION['cart'] = [];
     }
 
-    // Add the book to the cart only if it's not already in the cart
     if (!in_array($book_id, $_SESSION['cart'])) {
         $_SESSION['cart'][] = $book_id;
     }
 
-    // Redirect back to the book details page after adding to cart
     header("Location: book-details.php?book_id=" . $book_id);
-    exit();  // Always call exit after a redirect to stop further code execution
+    exit();
 }
 
-// Add to bookmarks logic
+// Add to bookmarks function
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'add_to_bookmarks') {
     $book_id = $_POST['book_id'];
 
-    // Ensure the bookmarks session is initialized if not already
     if (!isset($_SESSION['bookmarks'])) {
         $_SESSION['bookmarks'] = [];
     }
 
-    // Add the book to the bookmarks if it's not already bookmarked
     if (!in_array($book_id, $_SESSION['bookmarks'])) {
         $_SESSION['bookmarks'][] = $book_id;
     } else {
-        // If the book is already bookmarked, remove it from bookmarks
         $_SESSION['bookmarks'] = array_diff($_SESSION['bookmarks'], [$book_id]);
     }
 
-    // Redirect back to the book details page after adding/removing from bookmarks
     header("Location: book-details.php?book_id=" . $book_id);
     exit();
 }
@@ -75,9 +66,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
   <?php if ($book): ?>
     <div class="flex gap-10 bg-white p-8 rounded shadow w-full max-w-4xl">
 
-      <!-- Book Image + Rating -->
+    <!-- Book Cover-->
       <div class="flex-none text-center">
         <img src="<?= $book['image']; ?>" alt="<?= $book['title']; ?>" class="w-72 h-auto object-cover rounded">
+        
+    <!-- Rating--> 
         <p class="mt-4 text-sm">How was your reading?</p>
         <div class="flex items-center justify-center space-x-1 text-2xl text-gray-400" id="starRating">
           <span class="cursor-pointer" data-value="1">☆</span>
@@ -94,17 +87,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         <h2 class="text-2xl font-bold mb-2"><?= $book['title']; ?></h2>
         <p class="text-sm text-gray-600 mb-1">By <span class="font-medium"><?= $book['author']; ?></span></p>
         <p class="text-sm text-gray-500 italic mb-2"><?= $book['genre']; ?></p>
-
-        <!-- Description with max height for long texts -->
         <p class="text-gray-700 mb-4 text-sm max-h-40 overflow-y-auto"><?= $book['description']; ?></p>
-
 
         <!-- Add to Bookmarks Button -->
         <div class="space-y-4">
-    <!-- Bookmarks Button Form -->
-    <form action="book-details.php?book_id=<?= $book['book_id']; ?>" method="POST">
-        <input type="hidden" name="book_id" value="<?= $book['book_id']; ?>" />
-        <input type="hidden" name="action" value="add_to_bookmarks" />
+            <form action="book-details.php?book_id=<?= $book['book_id']; ?>" method="POST">
+            <input type="hidden" name="book_id" value="<?= $book['book_id']; ?>" />
+            <input type="hidden" name="action" value="add_to_bookmarks" />
         
         <?php $in_bookmarks = in_array($book['book_id'], $_SESSION['bookmarks'] ?? []); ?>
 
@@ -119,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         </button>
     </form>
 
-    <!-- Cart Button Form (with gap between buttons) -->
+    <!-- Add to cart Button  -->
     <?php $in_cart = in_array($book['book_id'], $_SESSION['cart'] ?? []); ?>
     <form action="book-details.php?book_id=<?= $book['book_id']; ?>" method="POST">
         <input type="hidden" name="book_id" value="<?= $book['book_id']; ?>" />
@@ -133,9 +122,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         </button>
     </form>
 </div>
-
-
-
 </div>
         <?php else: ?>
             <p>Book not found.</p>
