@@ -1,4 +1,4 @@
-// Toggle Category Menu
+//Category Menu
 document.addEventListener('DOMContentLoaded', function () {
   const categoryBtn = document.getElementById('categoryBtn');
   const categoryMenu = document.getElementById('categoryMenu');
@@ -6,8 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
   categoryBtn.addEventListener('click', function () {
     categoryMenu.classList.toggle('hidden');
   });
-
-  // Optional: Hide dropdown if clicking outside of it
   document.addEventListener('click', function (e) {
     if (!categoryBtn.contains(e.target) && !categoryMenu.contains(e.target)) {
       categoryMenu.classList.add('hidden');
@@ -15,22 +13,19 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
   
- // Get the profile button and the menu
+ // profile button and drop down menu
 const profileBtn = document.getElementById('profileBtn');
 const profileMenu = document.getElementById('profileMenu');
-
-// Add event listener for the button click
 profileBtn.addEventListener('click', function() {
-  // Toggle the 'hidden' class to show or hide the menu
   profileMenu.classList.toggle('hidden');
 });
-
-// Optional: Close the menu if clicking outside of it
 document.addEventListener('click', function(event) {
   if (!profileBtn.contains(event.target) && !profileMenu.contains(event.target)) {
     profileMenu.classList.add('hidden');
   }
 });
+
+//katong rating stars
 const stars = document.querySelectorAll('#starRating span');
 const ratingInput = document.getElementById('ratingValue');
 let selectedRating = 0;
