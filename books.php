@@ -48,6 +48,6 @@ $books = [
     'genre' => 'Philosophy',
     'image' => 'sample6.jpg'
   ],
-  // Add more books here
+  // Add more books here, dani mag reflect tanan info sa books like dani ra niya ginakuha tanan info
 ];
 ?>
