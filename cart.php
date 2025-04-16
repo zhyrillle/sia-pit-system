@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'books.php'; // Make sure this file has your $books array
+include 'books.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_book_id'])) {
     $remove_id = $_POST['remove_book_id'];
@@ -9,7 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_book_id'])) {
             return $id != $remove_id;
         });
     }
-    // Optional: Redirect to avoid form resubmission
     header("Location: cart.php");
     exit;
 }
@@ -28,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_book_id'])) {
 <main class="p-8">
     <h1 class="text-2xl font-bold mb-6">Borrowed Books</h1>
 
+<!-- katong card nga na add to cart na sya -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     <?php foreach ($_SESSION['cart'] as $book_id): ?>
     <?php $book = $books[$book_id]; ?>
@@ -35,13 +35,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_book_id'])) {
       <h3 class="font-bold text-lg"><?= $book['title']; ?></h3>
       <p class="text-sm text-gray-600"><?= $book['author']; ?></p>
 
-      <!-- Remove Button -->
+      <!-- Removes book from cart button -->
       <form action="cart.php" method="POST" class="mt-2">
         <input type="hidden" name="remove_book_id" value="<?= $book_id; ?>" />
         <button type="submit" class="text-sm text-red-500 hover:underline">Remove</button>
       </form>
 
-      <!-- Pending Request Label -->
+      <!-- kani sya kay eme pani kay sa database ni sya mag based -->
       <p class="text-xs text-yellow-600 mt-1 italic">Pending Request</p>
     </div>
   <?php endforeach; ?>
