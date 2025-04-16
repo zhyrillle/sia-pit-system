@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('books.php'); // Or your database connection
+include('books.php');
 
 $genre = $_GET['genre'] ?? null;
 
@@ -32,6 +32,8 @@ if ($genre) {
     <h1 class="text-2xl font-semibold mb-4">*Introduction here*</h1>
     <section class="py-6 px-4">
     <h2 class="text-2xl font-bold mb-4"><?= htmlspecialchars($genre) ?> Books</h2>
+
+    <!-- dani ma change ang column sa container atong books -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2">
         <?php if ($filtered_books): ?>
             <?php foreach ($filtered_books as $book): ?>
