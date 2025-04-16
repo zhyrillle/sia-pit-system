@@ -9,7 +9,7 @@
       <div class="relative">
         <button id="categoryBtn" class="bg-[#754E1A] text-white px-4 py-2 rounded">Category</button>
         <ul id="categoryMenu" class="absolute hidden bg-white border mt-2 rounded shadow" style="width: 180px;" z-10>
-          <!-- Original Categories -->
+
           <li class="p-2 font-semibold text-gray-700">By Genre:</li>
           <a href="category.php?genre=Literature">
             <li class="p-2 hover:bg-blue-100 cursor-pointer">Literature</li></a>
@@ -41,12 +41,12 @@
         <img src="https://pic.onlinewebfonts.com/thumbnails/icons_556065.svg" class="w-6 h-6" />
       </a>
 
-      <!-- New Contact Page Link -->
+      <!-- Contact Page -->
       <a href="contact.php" class="text-blue-500 hover:text-blue-700 flex items-center gap-2">
       <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" class="w-6 h-6" />
       </a>
 
-      <!-- Profile Dropdown -->
+      <!-- Profile -->
       <div class="relative">
         <button id="profileBtn" class="bg-gray-200 px-3 py-2 rounded-full">👤</button>
         <ul id="profileMenu" class="absolute hidden right-0 bg-white mt-2 shadow rounded w-40">
