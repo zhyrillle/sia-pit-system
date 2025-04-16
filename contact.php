@@ -8,10 +8,7 @@
 </head>
 <body class="bg-gray-100">
 
-  <!-- Navbar Container -->
-  <div>
     <?php include 'routes/navbar.php'; ?>
-  </div>
 
   <main class="flex justify-center items-start min-h-[80vh] pt-10 pb-8-">
     <div class="w-full max-w-2xl">
@@ -20,7 +17,7 @@
       <?php
       // Handle form submission
       if ($_SERVER["REQUEST_METHOD"] == "POST") {
-          // Simulate a successful message submission
+          // successful message submission
           echo '<p class="bg-green-100 text-green-700 p-4 rounded mb-6 text-center">Your message has been sent successfully! We will get back to you shortly.</p>';
       }
       ?>
