@@ -2,8 +2,15 @@
   <nav class="bg-white shadow p-4 flex justify-between items-center">
     <a href="index.php" class="text-xl font-bold text-[#754E1A]">iduno sa title</a>
 
-    <div class="flex items-center gap-4 -ml-10">
-      <input type="text" placeholder="Search..." class="border p-2 rounded-lg w-[400px]" />
+    <!-- Search -->
+    <div class="flex items-center justify-between px-10 py-4 gap-4">
+    <form action="search.php" method="GET" class="mr-6">
+      <input
+        type="text"
+        name="search"
+        placeholder="Search..."
+        class="border p-2 rounded-lg w-[300px]"/>
+    </form>
 
       <!-- Category Dropdown -->
       <div class="relative">
@@ -33,7 +40,7 @@
       
       <!-- Bookmark -->
       <a href="bookmarks.php" title="Bookmarks">
-        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" class="w-6 h-6" />
+        <img src="https://img.icons8.com/m_rounded/512/bookmark-ribbon.png" class="w-6 h-6" />
       </a>
 
       <!-- Cart -->
@@ -43,17 +50,18 @@
 
       <!-- Contact Page -->
       <a href="contact.php" class="text-blue-500 hover:text-blue-700 flex items-center gap-2">
-      <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" class="w-6 h-6" />
+      <img src="https://cdn-icons-png.freepik.com/256/455/455705.png" class="w-6 h-6" />
       </a>
 
       <!-- Profile -->
       <div class="relative">
-        <button id="profileBtn" class="bg-gray-200 px-3 py-2 rounded-full">👤</button>
+      <img id="profileBtn" src="https://cdn-icons-png.flaticon.com/512/3682/3682281.png" class="w-6 h-6 rounded-full cursor-pointer" />
         <ul id="profileMenu" class="absolute hidden right-0 bg-white mt-2 shadow rounded w-40">
           <li><a href="profile.php" class="block px-4 py-2 hover:bg-gray-100">Edit Profile</a></li>
           <li><a href="login.html" class="block px-4 py-2 hover:bg-gray-100">Logout</a></li>
-        </ul>
-      </div>
+      </ul>
+    </div>
+
 
       <script src="finals/js/script.js"></script>
 
