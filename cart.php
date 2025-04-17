@@ -2,6 +2,10 @@
 session_start();
 include 'books.php';
 
+if (!isset($_SESSION['cart'])) {
+  $_SESSION['cart'] = [];
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_book_id'])) {
     $remove_id = $_POST['remove_book_id'];
     if (!empty($_SESSION['cart'])) {
