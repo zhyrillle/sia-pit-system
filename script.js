@@ -13,16 +13,20 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
   
- // profile button and drop down menu
-const profileBtn = document.getElementById('profileBtn');
-const profileMenu = document.getElementById('profileMenu');
-profileBtn.addEventListener('click', function() {
+ // profile button and its drop down menu
+document.addEventListener('DOMContentLoaded', function () {
+  const profileBtn = document.getElementById('profileBtn');
+  const profileMenu = document.getElementById('profileMenu');
+
+profileBtn.addEventListener('click', function () {
   profileMenu.classList.toggle('hidden');
 });
-document.addEventListener('click', function(event) {
-  if (!profileBtn.contains(event.target) && !profileMenu.contains(event.target)) {
+
+document.addEventListener('click', function (e) {
+  if (!profileBtn.contains(e.target) && !profileMenu.contains(e.target)) {
     profileMenu.classList.add('hidden');
   }
+});
 });
 
 //katong rating stars
